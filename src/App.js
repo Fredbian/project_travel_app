@@ -1,28 +1,18 @@
-import Header from "./components/Header";
-import Map from "./components/Map";
-import List from "./components/List";
-import LocationDetails from "./components/LocationDetails";
-import { CssBaseline, Grid } from "@mui/material";
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import Home from './pages/Home'
+import NotFoundPage from './pages/NotFoundPage'
+import TravelApp from './pages/TravelApp'
 
-function App() {
-  return (
-    <>
-      <CssBaseline>
-        <Header />
-        <Grid container spacing={3} style={{ width: '100%' }}>
-          <Grid item xs={12} md={4}>
-            <List />
-          </Grid>
-          <Grid item xs={12} md={8}>
-            <Map />
-          </Grid>
-        </Grid>
-        <LocationDetails />
-        <Map />
-
-      </CssBaseline>
-    </>
-  );
+const App = () => {
+    return (
+        <BrowserRouter>
+          <Routes>
+            <Route path='*' element={<NotFoundPage />}/>
+            <Route path='/' element={<Home />} />
+            <Route path="/travelapp" element={<TravelApp />} />
+          </Routes>
+        </BrowserRouter>
+      );
 }
 
-export default App;
+export default App

@@ -1,0 +1,16 @@
+.notFound-title,.notFound-message {
+    text-align: center;
+  }
+  
+  .notFound-title {
+    animation: animated-shadow 1.5s infinite;
+  }
+  
+  @keyframes animated-shadow {
+    0% {
+      text-shadow: 1px 1px 0 rgba(240, 4, 248, 0.979);
+    }
+    100% {
+       text-shadow: 1px 1px 40px rgba(241, 38, 11, 0);
+    }
+  }
