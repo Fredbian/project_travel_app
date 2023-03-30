@@ -1,6 +1,6 @@
-const LocationDetails = () => {
+const LocationDetails = ({ place }) => {
     return (
-        <h1>LocationDetails</h1>
+        <h1>{place.name}</h1>
     )
 }
 

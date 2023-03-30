@@ -1,7 +1,6 @@
 import Header from "../../components/Header";
 import Map from "../../components/Map";
 import List from "../../components/List";
-import LocationDetails from "../../components/LocationDetails";
 import { CssBaseline, Grid } from "@mui/material";
 
 function TravelApp() {
@@ -17,9 +16,6 @@ function TravelApp() {
             <Map />
           </Grid>
         </Grid>
-        
-        <LocationDetails />
-
       </CssBaseline>
     </>
   );

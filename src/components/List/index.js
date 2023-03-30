@@ -10,6 +10,7 @@ import {
     SelectChangeEvent
 } from "@mui/material"
 import './index.css'
+import LocationDetails from '../LocationDetails'
 
 
 
@@ -17,6 +18,7 @@ const List = () => {
     const [type, setType] = useState('')
     const [rating, setRating] = useState('')
 
+    const places = [{ name: 'Place 1'}, { name: 'Place 2'}, { name: 'Place 3'}]
 
     return (
         <div className="container">
@@ -48,6 +50,14 @@ const List = () => {
                     <MenuItem value={4.5}>Above 4.5 stars</MenuItem>
                 </Select>
             </FormControl>
+            <Grid container spacing={3} sx={{height: '75vh', overflow: 'auto'}} >
+                {places?.map((place, index) => (
+                    <Grid item key={index} xs={12}>
+                        <LocationDetails place={place} />
+                    </Grid>
+                ))}
+            </Grid>    
+
         </div>
     )
 }
