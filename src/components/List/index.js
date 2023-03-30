@@ -18,7 +18,7 @@ const List = () => {
     const [type, setType] = useState('')
     const [rating, setRating] = useState('')
 
-    const places = [{ name: 'Place 1'}, { name: 'Place 2'}, { name: 'Place 3'}]
+    const locations = [{ name: 'Location 1'}, { name: 'Location 2'}, { name: 'Location 3'}]
 
     return (
         <div className="container">
@@ -51,9 +51,9 @@ const List = () => {
                 </Select>
             </FormControl>
             <Grid container spacing={3} sx={{height: '75vh', overflow: 'auto'}} >
-                {places?.map((place, index) => (
+                {locations?.map((location, index) => (
                     <Grid item key={index} xs={12}>
-                        <LocationDetails place={place} />
+                        <LocationDetails location={location} />
                     </Grid>
                 ))}
             </Grid>    

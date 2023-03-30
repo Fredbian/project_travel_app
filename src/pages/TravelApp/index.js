@@ -2,8 +2,22 @@ import Header from "../../components/Header";
 import Map from "../../components/Map";
 import List from "../../components/List";
 import { CssBaseline, Grid } from "@mui/material";
+import {getLocationsData} from '../../api'
+import { useState, useEffect } from "react";
+
 
 function TravelApp() {
+  const [locations, setLocations] = useState()
+
+
+  useEffect(() => {
+    getLocationsData()
+      .then(data => {
+        console.log(data);
+        setLocations(data)
+      })
+  }, [])
+
   return (
     <>
       <CssBaseline>
