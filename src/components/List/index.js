@@ -7,7 +7,6 @@ import {
     MenuItem,
     FormControl,
     Select,
-    SelectChangeEvent
 } from "@mui/material"
 import './index.css'
 import LocationDetails from '../LocationDetails'

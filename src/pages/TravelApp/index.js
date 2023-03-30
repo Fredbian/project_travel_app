@@ -2,21 +2,31 @@ import Header from "../../components/Header";
 import Map from "../../components/Map";
 import List from "../../components/List";
 import { CssBaseline, Grid } from "@mui/material";
-import {getLocationsData} from '../../api'
+import { getLocationsData } from '../../api'
 import { useState, useEffect } from "react";
 
 
 function TravelApp() {
-  const [locations, setLocations] = useState()
-
+  const [locations, setLocations] = useState([])
+  const [coordinates, setCoordinates] = useState({})
+  const [bounds, setBounds] = useState(null)
 
   useEffect(() => {
-    getLocationsData()
-      .then(data => {
-        console.log(data);
-        setLocations(data)
-      })
+    navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
+      setCoordinates({ lat: latitude, lng: longitude })
+    })
   }, [])
+
+  useEffect(() => {
+    // console.log(bounds);
+    if (bounds) {
+      getLocationsData(bounds.sw, bounds.ne)
+        .then(data => {
+          console.log(data);
+          setLocations(data)
+        })
+    }
+  }, [coordinates, bounds])
 
   return (
     <>
@@ -27,7 +37,11 @@ function TravelApp() {
             <List />
           </Grid>
           <Grid item xs={12} md={8}>
-            <Map />
+            <Map
+              setCoordinates={setCoordinates}
+              setBounds={setBounds}
+              coordinates={coordinates}
+            />
           </Grid>
         </Grid>
       </CssBaseline>
