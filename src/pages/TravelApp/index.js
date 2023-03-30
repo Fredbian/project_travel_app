@@ -17,8 +17,8 @@ function TravelApp() {
             <Map />
           </Grid>
         </Grid>
+        
         <LocationDetails />
-        <Map />
 
       </CssBaseline>
     </>
