@@ -63,11 +63,15 @@ const LocationDetails = ({ location }) => {
                         <Phone sx={{fontSize: 16, marginRight: '2px'}} /> {location.phone}
                     </Typography>
                 )}
-                
-
-
+                <CardActions>
+                    <Button sx={{fontSize: 12, margin: -1}} size="small" color="primary" onClick={() => window.open(location.web_url, '_blank')}>
+                        Trip Advisor
+                    </Button>
+                    <Button sx={{fontSize: 12, margin: -1}} size="small" color="primary" onClick={() => window.open(location.website, '_blank')}>
+                        Website
+                    </Button>
+                </CardActions>
             </CardContent>
-
         </Card>
     )
 }
