@@ -15,7 +15,8 @@ import {
 } from "@mui/icons-material"
 
 
-const LocationDetails = ({ location }) => {
+const LocationDetails = ({ location, selected, refProp }) => {
+    if (selected) refProp?.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
 
     return (
         <Card elevation={6}>
@@ -28,7 +29,7 @@ const LocationDetails = ({ location }) => {
                 <Typography gutterBottom variant="h6" sx={{ fontSize: 14, fontWeight: 900 }}>{location.name}</Typography>
                 <Box display='flex' justifyContent='space-between' >
                     <Rating value={Number(location.rating)} readOnly />
-                    <Typography gutterBottom variant="subtitle1" sx={{ fontSize: 9, paddingTop: '6px'  }}>Out of {location.num_reviews} reviews</Typography>
+                    <Typography gutterBottom variant="subtitle1" sx={{ fontSize: 9, paddingTop: '6px' }}>Out of {location.num_reviews} reviews</Typography>
                 </Box>
                 <Box display='flex' justifyContent='space-between' >
                     <Typography variant="subtitle1" sx={{ fontSize: 9, fontWeight: 700 }} >Price</Typography>

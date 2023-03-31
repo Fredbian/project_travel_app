@@ -10,6 +10,8 @@ function TravelApp() {
   const [locations, setLocations] = useState([])
   const [coordinates, setCoordinates] = useState({})
   const [bounds, setBounds] = useState(null)
+  const [childClicked, setChildClicked] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -19,11 +21,13 @@ function TravelApp() {
 
   useEffect(() => {
     // console.log(bounds);
+    setIsLoading(true)
     if (bounds) {
       getLocationsData(bounds.sw, bounds.ne)
         .then(data => {
           console.log(data);
           setLocations(data)
+          setIsLoading(false)
         })
     }
   }, [coordinates, bounds])
@@ -34,7 +38,11 @@ function TravelApp() {
         <Header />
         <Grid container spacing={3} style={{ width: '100%' }}>
           <Grid item xs={12} md={4}>
-            <List locations={locations} />
+            <List
+              locations={locations}
+              childClicked={childClicked}
+              isLoading={isLoading}
+            />
           </Grid>
           <Grid item xs={12} md={8}>
             <Map
@@ -42,6 +50,7 @@ function TravelApp() {
               setBounds={setBounds}
               coordinates={coordinates}
               locations={locations}
+              setChildClicked={setChildClicked}
             />
           </Grid>
         </Grid>

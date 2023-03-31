@@ -7,12 +7,13 @@ import {
 } from '@mui/material'
 import { LocationOnOutlined } from '@mui/icons-material'
 import './index.css'
-import { width } from '@mui/system'
+
 
 const GoogleMapAPIKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
-const Map = ({ setCoordinates, setBounds, coordinates, locations }) => {
+const Map = ({ setCoordinates, setBounds, coordinates, locations, setChildClicked }) => {
     const isDesktop = useMediaQuery('(min-width:600px)')
+    
 
     return (
         <div className='mapContainer'>
@@ -28,7 +29,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, locations }) => {
                     setCoordinates({ lat: e.center.lat, lng: e.center.lng })
                     setBounds({ ne: e.marginBounds.ne, sw: e.marginBounds.sw })
                 }}
-                onChildClick={''}
+                onChildClick={(child) => setChildClicked(child)}
             >
                 {locations?.map((location, index) => (
                     <div
