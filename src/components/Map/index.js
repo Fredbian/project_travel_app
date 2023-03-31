@@ -7,11 +7,12 @@ import {
 } from '@mui/material'
 import { LocationOnOutlined } from '@mui/icons-material'
 import './index.css'
+import { width } from '@mui/system'
 
 const GoogleMapAPIKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
-const Map = ({ setCoordinates, setBounds, coordinates }) => {
-    const isMobile = useMediaQuery('(min-width:600px)')
+const Map = ({ setCoordinates, setBounds, coordinates, locations }) => {
+    const isDesktop = useMediaQuery('(min-width:600px)')
 
     return (
         <div className='mapContainer'>
@@ -29,6 +30,36 @@ const Map = ({ setCoordinates, setBounds, coordinates }) => {
                 }}
                 onChildClick={''}
             >
+                {locations?.map((location, index) => (
+                    <div
+                        key={index}
+                        className='markerContainer'
+                        lat={location.latitude}
+                        lng={location.longitude}
+                    >
+                        {
+                            !isDesktop ? (
+                                <LocationOnOutlined color='primary' fontSize='large' />
+                            ) : (
+                                <Paper
+                                    elevation={3}
+                                    sx={{ width: 100, padding: '5px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
+                                >
+                                    <Typography
+                                        sx={{ fontSize: 9 }}
+                                    >
+                                        {location.name}
+                                    </Typography>
+                                    <img 
+                                        className='pointer'
+                                        src={location.photo ? location.photo.images.large.url : 'https://images.pexels.com/photos/735869/pexels-photo-735869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
+                                        alt={location.name}
+                                    />
+                                </Paper>
+                            )
+                        }
+                    </div>
+                ))}
             </GoogleMapReact>
         </div>
     )

@@ -41,6 +41,7 @@ function TravelApp() {
               setCoordinates={setCoordinates}
               setBounds={setBounds}
               coordinates={coordinates}
+              locations={locations}
             />
           </Grid>
         </Grid>
