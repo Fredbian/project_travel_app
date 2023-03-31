@@ -55,6 +55,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, locations }) => {
                                         src={location.photo ? location.photo.images.large.url : 'https://images.pexels.com/photos/735869/pexels-photo-735869.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}
                                         alt={location.name}
                                     />
+                                    <Rating sx={{fontSize: 18}} value={Number(location.rating)} readOnly />
                                 </Paper>
                             )
                         }
