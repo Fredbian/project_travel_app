@@ -73,10 +73,10 @@ const Header = () => {
                             <MenuIcon />
                         </IconButton> */}
                         <Typography
-                            variant="h6"
+                            variant="h1"
                             noWrap
                             component="div"
-                            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                            sx={{ fontSize: 25, fontWeight: 900, flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
                         >
                             Travel App
                         </Typography>

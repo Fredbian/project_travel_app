@@ -13,20 +13,19 @@ import LocationDetails from '../LocationDetails'
 
 
 
-const List = () => {
+const List = ({ locations }) => {
     const [type, setType] = useState('')
     const [rating, setRating] = useState('')
 
-    const locations = [{ name: 'Location 1'}, { name: 'Location 2'}, { name: 'Location 3'}]
-
     return (
         <div className="container">
-            <Typography variant="h4">
+            <Typography variant="h6" sx={{fontSize: 15, fontWeight: 900}} >
                 Restaurants, Hotels & Attractions around you
             </Typography>
-            <FormControl sx={{ m: 1, marginBottom: '30px', minWidth: 160, }}>
-                <InputLabel>Type</InputLabel>
+            <FormControl sx={{ m: 1, minWidth: 160, height: 40}} size="small" >
+                <InputLabel sx={{fontSize: 12}}>Type</InputLabel>
                 <Select
+                    sx={{fontSize: 12}}
                     label='Type'
                     value={type}
                     onChange={(e) => setType(e.target.value)}
@@ -36,9 +35,10 @@ const List = () => {
                     <MenuItem value='attractions'>Attractions</MenuItem>
                 </Select>
             </FormControl>
-            <FormControl sx={{ m: 1, marginBottom: '30px', minWidth: 160, }}>
-                <InputLabel >Rating</InputLabel>
+            <FormControl sx={{ m: 1, marginBottom: '25px', minWidth: 160, height: 40 }} size="small">
+                <InputLabel sx={{fontSize: 12}}>Rating</InputLabel>
                 <Select
+                    sx={{fontSize: 12}}                   
                     label='Rating'
                     value={rating}
                     onChange={(e) => setRating(e.target.value)}
@@ -49,13 +49,13 @@ const List = () => {
                     <MenuItem value={4.5}>Above 4.5 stars</MenuItem>
                 </Select>
             </FormControl>
-            <Grid container spacing={3} sx={{height: '75vh', overflow: 'auto'}} >
+            <Grid container spacing={3} sx={{ height: '75vh', overflow: 'auto' }} >
                 {locations?.map((location, index) => (
                     <Grid item key={index} xs={12}>
                         <LocationDetails location={location} />
                     </Grid>
                 ))}
-            </Grid>    
+            </Grid>
 
         </div>
     )

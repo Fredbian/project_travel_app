@@ -12,7 +12,7 @@ const options = {
 
 export const getLocationsData = async (sw, ne) => {
     try {
-        console.log(sw, ne);
+        // console.log(sw, ne);
         const url = `https://travel-advisor.p.rapidapi.com/restaurants/list-in-boundary?bl_latitude=${sw.lat}&tr_latitude=${ne.lat}&bl_longitude=${sw.lng}&tr_longitude=${ne.lng}`
         const response = await fetch(url, options)
         const data = await response.json()
