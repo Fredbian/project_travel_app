@@ -13,9 +13,8 @@ import LocationDetails from '../LocationDetails'
 
 
 
-const List = ({ locations, childClicked, isLoading }) => {
-    const [type, setType] = useState('')
-    const [rating, setRating] = useState('')
+const List = ({ locations, childClicked, isLoading, type, setType, rating, setRating }) => {
+
     const [elRefs, setElRefs] = useState([])
 
     useEffect(() => {
@@ -26,7 +25,7 @@ const List = ({ locations, childClicked, isLoading }) => {
 
     return (
         <div className="container">
-            <Typography variant="h6" sx={{ fontSize: 15, fontWeight: 900 }} >
+            <Typography variant="h6" sx={{ fontSize: 14, fontWeight: 900 }} >
                 Restaurants, Hotels & Attractions around you
             </Typography>
             {isLoading ? (

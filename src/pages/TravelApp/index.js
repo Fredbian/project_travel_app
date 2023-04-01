@@ -9,9 +9,13 @@ import { useState, useEffect } from "react";
 function TravelApp() {
   const [locations, setLocations] = useState([])
   const [coordinates, setCoordinates] = useState({})
-  const [bounds, setBounds] = useState(null)
+  const [bounds, setBounds] = useState({})
   const [childClicked, setChildClicked] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [type, setType] = useState('restaurants')
+  const [rating, setRating] = useState('')
+  const [filteredLocations, setFilteredLocations] = useState([])
+
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) => {
@@ -20,17 +24,22 @@ function TravelApp() {
   }, [])
 
   useEffect(() => {
+    const filteredLocations = locations.filter(location => location.rating > rating)
+    setFilteredLocations(filteredLocations)
+  }, [rating])
+
+  useEffect(() => {
     // console.log(bounds);
     setIsLoading(true)
-    if (bounds) {
-      getLocationsData(bounds.sw, bounds.ne)
+
+      getLocationsData(type, bounds.sw, bounds.ne)
         .then(data => {
           console.log(data);
           setLocations(data)
+          setFilteredLocations([])
           setIsLoading(false)
-        })
-    }
-  }, [coordinates, bounds])
+        })  
+  }, [type, coordinates, bounds])
 
   return (
     <>
@@ -42,6 +51,10 @@ function TravelApp() {
               locations={locations}
               childClicked={childClicked}
               isLoading={isLoading}
+              type={type}
+              setType={setType}
+              rating={rating}
+              setRating={setRating}
             />
           </Grid>
           <Grid item xs={12} md={8}>
@@ -49,7 +62,7 @@ function TravelApp() {
               setCoordinates={setCoordinates}
               setBounds={setBounds}
               coordinates={coordinates}
-              locations={locations}
+              locations={filteredLocations.length ? filteredLocations : locations}
               setChildClicked={setChildClicked}
             />
           </Grid>
