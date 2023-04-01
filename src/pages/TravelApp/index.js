@@ -30,16 +30,17 @@ function TravelApp() {
 
   useEffect(() => {
     // console.log(bounds);
-    setIsLoading(true)
-
+    if (bounds.sw && bounds.ne) {
+      setIsLoading(true)
       getLocationsData(type, bounds.sw, bounds.ne)
         .then(data => {
-          console.log(data);
-          setLocations(data)
+          // console.log(data);
+          setLocations(data?.filter(location => location.name && location.num_reviews > 0))
           setFilteredLocations([])
           setIsLoading(false)
-        })  
-  }, [type, coordinates, bounds])
+        })
+    }
+  }, [type, bounds])
 
   return (
     <>
