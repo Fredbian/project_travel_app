@@ -1,10 +1,11 @@
 .mapContainer {
+    margin-top: 20px;
     height: 85vh; 
     width: 100%;
 }
 
 .markerContainer {
-    position: absolute; 
+    position: absolute;
     transform: translate(-50%, -50%); 
     z-index: 1;
 }

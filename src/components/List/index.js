@@ -7,14 +7,15 @@ import {
     MenuItem,
     FormControl,
     Select,
+    useMediaQuery,
 } from "@mui/material"
 import './index.css'
 import LocationDetails from '../LocationDetails'
 
 
 
-const List = ({ locations, childClicked, isLoading, type, setType, rating, setRating }) => {
-
+const List = ({ locations, childClicked, isLoading, type, setType, rating, setRating, weatherData }) => {
+    const isHidden = useMediaQuery('(min-width: 400px) and (max-width: 900px)')
     const [elRefs, setElRefs] = useState([])
 
     useEffect(() => {
@@ -61,6 +62,11 @@ const List = ({ locations, childClicked, isLoading, type, setType, rating, setRa
                             <MenuItem value={4.5}>Above 4.5 stars</MenuItem>
                         </Select>
                     </FormControl>
+                    {weatherData && (
+                        <div hidden={isHidden ? true : false} style={{ position: 'absolute', marginLeft: '180px', marginTop: '-130px' }}>
+                            <img src={`https://openweathermap.org/img/wn/${weatherData?.current?.weather[0].icon}@2x.png`} />
+                        </div>
+                    )}
                     <Grid container spacing={3} sx={{ height: '75vh', overflow: 'auto' }} >
                         {locations?.map((location, index) => (
                             <Grid ref={elRefs[index]} item key={index} xs={12}>

@@ -2,12 +2,13 @@ import Header from "../../components/Header";
 import Map from "../../components/Map";
 import List from "../../components/List";
 import { CssBaseline, Grid } from "@mui/material";
-import { getLocationsData } from '../../api'
+import { getLocationsData, getWeatherData } from '../../api'
 import { useState, useEffect } from "react";
 
 
-function TravelApp() {
+const TravelApp = () => {
   const [locations, setLocations] = useState([])
+  const [weatherData, setWeatherData] = useState([])
   const [coordinates, setCoordinates] = useState({})
   const [bounds, setBounds] = useState({})
   const [childClicked, setChildClicked] = useState(null)
@@ -32,6 +33,10 @@ function TravelApp() {
     // console.log(bounds);
     if (bounds.sw && bounds.ne) {
       setIsLoading(true)
+
+      getWeatherData(coordinates.lat, coordinates.lng)
+        .then(data => setWeatherData(data))
+
       getLocationsData(type, bounds.sw, bounds.ne)
         .then(data => {
           // console.log(data);
@@ -56,6 +61,7 @@ function TravelApp() {
               setType={setType}
               rating={rating}
               setRating={setRating}
+              weatherData={weatherData}
             />
           </Grid>
           <Grid item xs={12} md={8}>
