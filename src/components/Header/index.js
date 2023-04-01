@@ -10,6 +10,7 @@ import {
 // import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
 import { Autocomplete } from '@react-google-maps/api';
+import {useState} from 'react'
 
 //------- APP BAR STYLE---------//
 const Search = styled('div')(({ theme }) => ({
@@ -56,22 +57,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 //------- APP BAR STYLE---------//
 
 
-const Header = () => {
+const Header = ({ setCoordinates }) => {
+    const [autocomplete, setAutocomplete] = useState(null)
+    const onLoad = (autoC) => setAutocomplete(autoC)
+    const onPlaceChanged = () => {
+        const lat = autocomplete.getPlace().geometry.location.lat()
+        const lng = autocomplete.getPlace().geometry.location.lng()
+        setCoordinates({lat, lng})
+    }
+
+
     return (
         <>
             {/* APP BAR */}
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static">
-                    <Toolbar>
-                        {/* <IconButton
-                            size="large"
-                            edge="start"
-                            color="inherit"
-                            aria-label="open drawer"
-                            sx={{ mr: 2 }}
-                        >
-                            <MenuIcon />
-                        </IconButton> */}
+                    <Toolbar>                    
                         <Typography
                             variant="h1"
                             noWrap
@@ -83,7 +84,7 @@ const Header = () => {
                         <Typography>
                             Explore new places
                         </Typography>
-                        {/* <Autocomplete> */}
+                        <Autocomplete onLoad={onLoad} onPlaceChanged={onPlaceChanged}>
                             <Search>
                                 <SearchIconWrapper>
                                     <SearchIcon />
@@ -93,7 +94,7 @@ const Header = () => {
                                     inputProps={{ 'aria-label': 'search' }}
                                 />
                             </Search>
-                        {/* </Autocomplete> */}
+                        </Autocomplete>
                     </Toolbar>
                 </AppBar>
             </Box>
