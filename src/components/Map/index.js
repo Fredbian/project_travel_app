@@ -47,7 +47,7 @@ const Map = ({ setCoordinates, setBounds, coordinates, locations, setChildClicke
                                     sx={{ width: 100, padding: '5px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}
                                 >
                                     <Typography
-                                        sx={{ fontSize: 9, fontWeight: 700 }}
+                                        sx={{ fontSize: 13, fontWeight: 700 }}
                                     >
                                         {location.name}
                                     </Typography>

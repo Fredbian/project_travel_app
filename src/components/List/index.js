@@ -26,7 +26,7 @@ const List = ({ locations, childClicked, isLoading, type, setType, rating, setRa
 
     return (
         <div className="container">
-            <Typography variant="h6" sx={{ fontSize: 14, fontWeight: 900 }} >
+            <Typography variant="h6" sx={{ fontSize: 18, fontWeight: 900 }} >
                 Restaurants, Hotels & Attractions around you
             </Typography>
             {isLoading ? (
@@ -36,9 +36,9 @@ const List = ({ locations, childClicked, isLoading, type, setType, rating, setRa
             ) : (
                 <>
                     <FormControl sx={{ m: 1, minWidth: 160, height: 40 }} size="small" >
-                        <InputLabel sx={{ fontSize: 12 }}>Type</InputLabel>
+                        <InputLabel sx={{ fontSize: 16 }}>Type</InputLabel>
                         <Select
-                            sx={{ fontSize: 12 }}
+                            sx={{ fontSize: 16 }}
                             label='Type'
                             value={type}
                             onChange={(e) => setType(e.target.value)}
@@ -49,9 +49,9 @@ const List = ({ locations, childClicked, isLoading, type, setType, rating, setRa
                         </Select>
                     </FormControl>
                     <FormControl sx={{ m: 1, marginBottom: '25px', minWidth: 160, height: 40 }} size="small">
-                        <InputLabel sx={{ fontSize: 12 }}>Rating</InputLabel>
+                        <InputLabel sx={{ fontSize: 16 }}>Rating</InputLabel>
                         <Select
-                            sx={{ fontSize: 12 }}
+                            sx={{ fontSize: 16 }}
                             label='Rating'
                             value={rating}
                             onChange={(e) => setRating(e.target.value)}
@@ -62,12 +62,12 @@ const List = ({ locations, childClicked, isLoading, type, setType, rating, setRa
                             <MenuItem value={4.5}>Above 4.5 stars</MenuItem>
                         </Select>
                     </FormControl>
-                    {weatherData && (
-                        <div hidden={isHidden ? true : false} style={{ position: 'absolute', marginLeft: '180px', marginTop: '-130px' }}>
+                    {/* {weatherData && (
+                        <div hidden={isHidden ? true : false} style={{ position: 'absolute', marginLeft: '180px', marginTop: '-120px' }}>
                             <img src={`https://openweathermap.org/img/wn/${weatherData?.current?.weather[0].icon}@2x.png`} />
                         </div>
-                    )}
-                    <Grid container spacing={3} sx={{ height: '75vh', overflow: 'auto' }} >
+                    )} */}
+                    <Grid container spacing={3} sx={{ height: '75vh', overflow: 'auto', marginTop:'5px' }} >
                         {locations?.map((location, index) => (
                             <Grid ref={elRefs[index]} item key={index} xs={12}>
                                 <LocationDetails
