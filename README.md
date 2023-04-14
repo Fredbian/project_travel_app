@@ -71,4 +71,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### URL
 
-Deployed URL: https://clever-halva-0709c1.netlify.app
+Deployed URL: https://rococo-belekoy-25c298.netlify.app
