@@ -12,9 +12,10 @@ import { mapStyles } from './mapStyles'
 
 const GoogleMapAPIKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
-const Map = ({ setCoordinates, setBounds, coordinates, locations, setChildClicked }) => {
+const Map = ({ setCoordinates, setBounds, coordinates, locations, setChildClicked, weatherData }) => {
     const isDesktop = useMediaQuery('(min-width:600px)')
 
+    console.log(weatherData);
     return (
         <div className='mapContainer'>
             <GoogleMapReact
@@ -61,7 +62,12 @@ const Map = ({ setCoordinates, setBounds, coordinates, locations, setChildClicke
                             )
                         }
                     </div>
-                ))}  
+                ))}
+                {weatherData && (
+                    <div lat={weatherData.lat} lng={weatherData.lon}>
+                        <img src={`https://openweathermap.org/img/wn/${weatherData?.current?.weather[0].icon}@2x.png`} alt='weather' />
+                    </div>
+                )}
             </GoogleMapReact>
         </div>
     )

@@ -7,15 +7,13 @@ import {
     MenuItem,
     FormControl,
     Select,
-    useMediaQuery,
 } from "@mui/material"
 import './index.css'
 import LocationDetails from '../LocationDetails'
 
 
 
-const List = ({ locations, childClicked, isLoading, type, setType, rating, setRating, weatherData }) => {
-    const isHidden = useMediaQuery('(min-width: 400px) and (max-width: 900px)')
+const List = ({ locations, childClicked, isLoading, type, setType, rating, setRating }) => {
     const [elRefs, setElRefs] = useState([])
 
     useEffect(() => {

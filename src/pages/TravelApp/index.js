@@ -60,8 +60,7 @@ const TravelApp = () => {
               type={type}
               setType={setType}
               rating={rating}
-              setRating={setRating}
-              weatherData={weatherData}
+              setRating={setRating}             
             />
           </Grid>
           <Grid item xs={12} md={8}>
@@ -71,6 +70,7 @@ const TravelApp = () => {
               coordinates={coordinates}
               locations={filteredLocations.length ? filteredLocations : locations}
               setChildClicked={setChildClicked}
+              weatherData={weatherData}
             />
           </Grid>
         </Grid>
