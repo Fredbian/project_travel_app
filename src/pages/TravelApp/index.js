@@ -27,7 +27,7 @@ const TravelApp = () => {
   useEffect(() => {
     const filteredLocations = locations.filter(location => location.rating > rating)
     setFilteredLocations(filteredLocations)
-  }, [rating])
+  }, [rating, locations])
 
   useEffect(() => {
     // console.log(bounds);
@@ -45,7 +45,7 @@ const TravelApp = () => {
           setIsLoading(false)
         })
     }
-  }, [type, bounds])
+  }, [type, bounds, coordinates])
 
   return (
     <>
