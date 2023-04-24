@@ -15,7 +15,7 @@ const GoogleMapAPIKey = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 const Map = ({ setCoordinates, setBounds, coordinates, locations, setChildClicked, weatherData }) => {
     const isDesktop = useMediaQuery('(min-width:600px)')
 
-    console.log(weatherData);
+    // console.log(weatherData);
     return (
         <div className='mapContainer'>
             <GoogleMapReact
